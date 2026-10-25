@@ -18,13 +18,20 @@
 
 ## 📌 Overview
 
-Multi-platform username presence detection
+
+Ouser is an offline, read-only local user, group and account-policy auditor that parses /etc/passwd, /etc/shadow, /etc/group and login.defs to assess identity hygiene. It flags UID 0 duplicates, empty or weak password hashes, stale and never-expiring accounts, orphaned files and risky sudo/group membership. Findings are mapped to CWE and MITRE ATT&CK, scored and graded, and exported as TXT, Markdown, JSON, CSV or SARIF.
 
 ---
 
 ## ✨ Features
 
-- Public username presence check
+
+- Parsers for /etc/passwd, /etc/shadow, /etc/group, /etc/gshadow and login.defs
+- Duplicate UID 0 / privileged-account detection and system-vs-human account classification
+- Password-hygiene checks: empty/locked/weak hashes, aging, expiry and never-expiring accounts
+- Group and sudo membership review for over-privileged users
+- Shell/home-directory and orphaned-file hygiene checks
+- CWE+ATT&CK mapping, offline --root trees, score/grade and TXT/MD/JSON/CSV/SARIF export
 
 ---
 
@@ -37,8 +44,13 @@ Multi-platform username presence detection
 
 ## 🚀 Usage
 
+
 ```bash
-./Ouser
+./Ouser --scan -f sarif -o users.sarif
+./Ouser --passwd /etc/passwd --shadow /etc/shadow
+./Ouser -r /mnt/image --fail-on high --json
+./Ouser --demo
+./Ouser --help
 ```
 
 ---
